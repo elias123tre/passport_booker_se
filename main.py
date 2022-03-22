@@ -94,6 +94,7 @@ with sync_playwright() as p:
 
     page.locator("text=Nästa").click()
 
+    page.wait_for_load_state("domcontentloaded")
     expeditions = page.locator('select[name="SectionId"]')
     option_tags = expeditions.locator("option")
     options = [option_tags.nth(i).text_content()
