@@ -7,7 +7,6 @@ from tkinter import messagebox
 import tkinter.ttk as ttk
 from random import randint
 from tkinter import Tk
-from time import sleep
 
 from playwright.sync_api import sync_playwright
 
@@ -37,7 +36,7 @@ LOCATIONS = [
 
 root = Tk()
 root.title("Passport booker - Svenska polisen")
-root.geometry('325x250')
+root.geometry('350x150')
 root.bind('<Control-c>', root.quit)
 
 ttk.Label(root, text="Plats (län):").grid(row=0, column=0)
@@ -102,7 +101,7 @@ with sync_playwright() as p:
 
     popup = Tk()
     popup.title("Välj passexpedition (ort)")
-    popup.geometry('350x200')
+    popup.geometry('350x150')
     popup.bind('<Control-c>', popup.quit)
     popup.protocol("WM_DELETE_WINDOW", lambda: sys.exit())
 
