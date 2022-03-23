@@ -4,7 +4,10 @@
 
 Eftersom polisen fortfarande inte har fixat fler tider för att boka pass så kommer detta skript att hitta den första möjliga tiden att boka pass och reservera den. Denna metod kommer högst troligt inte längre fungera efter **två veckor** då polisen ska uppdatera systemet för att förhindra bot-reservationer [(källa)](https://www.expressen.se/dinapengar/sa-ska-polisen-stoppa-fulbokningen-av-pass/).
 
-Ett liknande skript finns redan [(jonkpirateboy/Pass-fur-alle)](https://github.com/jonkpirateboy/Pass-fur-alle) som kan automatisk genomföra slutsteget för bokningar men det är anpassat för Mac och har inget grafiskt gränssnitt för att välja parametrar. Mitt skript saknar automatisk bekräftelse av bokningen men är lättare att installera, är cross-platform och har grafiskt gränssnitt för att välja datum, antal personer osv.
+![User interface](https://i.imgur.com/a0jFgia.png)
+![Location user interface](https://i.imgur.com/VM1XKI5.png)
+
+Ett liknande skript finns redan [(jonkpirateboy/Pass-fur-alle)](https://github.com/jonkpirateboy/Pass-fur-alle) som kan automatisk genomföra slutsteget för bokningar som använder den lite mer komplicerade mjukvaran [Selenium](https://www.selenium.dev/) (jämfört med [playwright](https://playwright.dev/python/)) och har inget grafiskt gränssnitt för att välja parametrar. Mitt skript saknar automatisk genomförelse av bokningen men är lättare att installera och har ett grafiskt gränssnitt.
 
 ## Instructions
 
