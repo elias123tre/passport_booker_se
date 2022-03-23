@@ -21,7 +21,7 @@ Ett liknande skript finns redan [(jonkpirateboy/Pass-fur-alle)](https://github.c
    playwright install chromium
    ```
 
-2. Download the script
+2. [Download the script](https://raw.githubusercontent.com/elias123tre/passport_booker_se/main/main.py) (press CTRL+S to save the file)
 
 3. Run the script:
 
