@@ -1,6 +1,6 @@
-# Passport booker - Svenska polisen
+# Automatic passport booker - Boka pass automatiskt hos Svenska polisen
 
-> A cross-platform script to book first available time for getting a passport in Sweden
+> A cross-platform script to book first available time for getting a passport in Sweden - Ett skript som automatiskt bokar pass hos polisen
 
 Eftersom polisen fortfarande inte har fixat fler tider för att boka pass så kommer detta skript att hitta den första möjliga tiden att boka pass och reservera den. Denna metod kommer högst troligt inte längre fungera efter **två veckor** då polisen ska uppdatera systemet för att förhindra bot-reservationer [(källa)](https://www.expressen.se/dinapengar/sa-ska-polisen-stoppa-fulbokningen-av-pass/).
 
