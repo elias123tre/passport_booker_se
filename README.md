@@ -31,6 +31,7 @@ Ett liknande skript finns redan [(jonkpirateboy/Pass-fur-alle)](https://github.c
 
 4. Follow onscreen instructions
 
-5. Wait for a time to become available, a popup will appear (the page reloads itself in the background)
+5. Wait for a time to become available, a popup will appear (the page reloads itself in the background).  
+   Note: if the booking isn't verified/completed manually (entering personal details) after the popup has appeared, it will be lost after some time due to inactivity
 
 6. Optional: force-quit the script anytime by pressing CTRL+C (ignore any errors that appear)
