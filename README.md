@@ -31,7 +31,7 @@ Eftersom polisen fortfarande inte har fixat fler tider för att boka pass så ko
    Install python from official source: https://www.python.org/downloads/  
    Check the box for `Add Python 3.x to PATH` if it appears
    
-   If you get stuck on this step, search for how to install python your operating system
+   If you get stuck on this step, search for how to install python for your operating system
 
 2. Install playwright:
 
