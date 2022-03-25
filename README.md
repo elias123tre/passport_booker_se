@@ -7,31 +7,71 @@ Eftersom polisen fortfarande inte har fixat fler tider för att boka pass så ko
 ![User interface](https://i.imgur.com/a0jFgia.png)
 ![Location user interface](https://i.imgur.com/VM1XKI5.png)
 
-Ett liknande skript finns redan [(jonkpirateboy/Pass-fur-alle)](https://github.com/jonkpirateboy/Pass-fur-alle) som kan automatisk genomföra slutsteget för bokningar som använder den lite mer komplicerade mjukvaran [Selenium](https://www.selenium.dev/) (jämfört med [playwright](https://playwright.dev/python/)) och har inget grafiskt gränssnitt för att välja parametrar. Mitt skript saknar automatisk genomförelse av bokningen men är lättare att installera och har ett grafiskt gränssnitt.
+### Relaterade/liknande projekt:
+- [jonkpirateboy/Pass-fur-alle](https://github.com/jonkpirateboy/Pass-fur-alle) - has automatic booking confirming feature
+- [kalkih/passport-appointment-bot](https://github.com/kalkih/passport-appointment-bot) - has prebuilt executables, SUPER easy to install (check this out if you have any problems with the others)
+- This project - has graphical interface for parameter selection
 
 ## Instructions
 
-> Prerequisites: python3.7 (or higher), pip
+1. Install python:
 
-1. Install playwright:
+   a. Open terminal
+   
+   _Windows_: type `powershell` in the search bar (lower left corner) then right click on `Windows PowerShell` and press `Run as administrator`
 
+   _Mac_: open the terminal, preferably by typing `terminal` into the spotlight search bar (upper right corner) then select terminal
+   
+   b. Check if it is already installed
+   
+   _Windows & mac_: type `python --version` then enter, if it displays a python version starting with 3.7 or grater, continue to step 2
+   
+   c. If not installed (previous output shows that the command was not found)
+   
+   Install python from official source: https://www.python.org/downloads/  
+   Check the box for `Add Python 3.x to PATH` if it appears
+   
+   If you get stuck on this step, search for how to install python your operating system
+
+2. Install playwright:
+
+   Type the following 3 lines one by one into the same terminal/console that you openend in step 1.a.
+
+   _Windows_:  
    ```sh
-   pip install --upgrade pip
-   pip install playwright
+   python -m pip install --upgrade pip
+   python -m pip install playwright
+   playwright install chromium
+   ```
+   
+   _Mac_:  
+   ```sh
+   python3 -m pip install --upgrade pip
+   python3 -m pip install playwright
    playwright install chromium
    ```
 
-2. [Download the script](https://raw.githubusercontent.com/elias123tre/passport_booker_se/main/main.py) (press CTRL+S to save the file)
+3. [Download the script](https://raw.githubusercontent.com/elias123tre/passport_booker_se/main/main.py) (press CTRL+S to save the file)
 
-3. Run the script:
+4. Run the script:
+   
+   Type the following 2 lines one by one into the same terminal/console that you openend in step 1.a. 
 
+   _Windows_:  
    ```sh
+   cd ~/Downloads
    python main.py
    ```
+   
+   _Mac_:  
+   ```sh
+   cd ~/Downloads
+   python3 main.py
+   ```
 
-4. Follow onscreen instructions
+5. Follow onscreen instructions and enter the details about your search
 
-5. Wait for a time to become available, a popup will appear (the page reloads itself in the background).  
+6. Wait for a time to become available, a popup will appear (the page reloads itself in the background to search for new times).  
    Note: if the booking isn't verified/completed manually (entering personal details) after the popup has appeared, it will be lost after some time due to inactivity
 
-6. Optional: force-quit the script anytime by pressing CTRL+C (ignore any errors that appear)
+7. Optional: force-quit the script anytime by closing the browser or by pressing CTRL+C in the terminal/console (ignore any errors that appear)
