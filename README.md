@@ -14,6 +14,8 @@ Eftersom polisen fortfarande inte har fixat fler tider för att boka pass så ko
 
 ## Instructions
 
+> Note: beware that on Mac you may need to enable extensive permissions to install python, puppeteer or run the script. I don't have a Mac to test on so if you encounter this, Google the error message and how to solve it.
+
 1. Install python:
 
    a. Open terminal
@@ -35,10 +37,11 @@ Eftersom polisen fortfarande inte har fixat fler tider för att boka pass så ko
 
 2. Install playwright:
 
-   Type the following 3 lines one by one into the same terminal/console that you openend in step 1.a.
+   Close the terminal/console from step 1.a. and a new one the same way. Then type the following lines one by one and press enter after each one.
 
    _Windows_:  
    ```sh
+   $env:Path = [System.Environment]::GetEnvironmentVariable("Path","Machine") + ";" + [System.Environment]::GetEnvironmentVariable("Path","User")
    python -m pip install --upgrade pip
    python -m pip install playwright
    playwright install chromium
@@ -51,11 +54,11 @@ Eftersom polisen fortfarande inte har fixat fler tider för att boka pass så ko
    playwright install chromium
    ```
 
-3. [Download the script](https://raw.githubusercontent.com/elias123tre/passport_booker_se/main/main.py) (press CTRL+S to save the file)
+3. [Download the script](https://raw.githubusercontent.com/elias123tre/passport_booker_se/main/main.py) (press CTRL+S to save the file, select Downloads folder)
 
 4. Run the script:
    
-   Type the following 2 lines one by one into the same terminal/console that you openend in step 1.a. 
+   Type the following lines one by one into the new terminal/console that you openend in step 2.
 
    _Windows_:  
    ```sh
