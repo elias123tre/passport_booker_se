@@ -7,4 +7,4 @@
 
 $env:PLAYWRIGHT_BROWSERS_PATH="0"
 & .\venv\Scripts\playwright.exe install chromium
-& .\venv\Scripts\pyinstaller --clean --onefile --noconsole main.py
+& .\venv\Scripts\pyinstaller --onefile main.py
