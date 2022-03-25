@@ -8,7 +8,7 @@ from tkinter import Tk, messagebox, ttk
 
 from playwright.sync_api import sync_playwright
 
-s  # Random time between searches in milliseconds (min, max)
+# Random time between searches in milliseconds (min, max)
 RANDOM_WAIT_RANGE = (15_000, 20_000)
 
 # Whether or not to screenshot _before_ confirming booking (it will still screenshot after)
