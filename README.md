@@ -8,73 +8,87 @@ Eftersom polisen fortfarande inte har fixat fler tider för att boka pass så ko
 ![Location user interface](https://i.imgur.com/VM1XKI5.png)
 
 ### Relaterade/liknande projekt:
+
 - [jonkpirateboy/Pass-fur-alle](https://github.com/jonkpirateboy/Pass-fur-alle) - has automatic booking confirming feature
 - [kalkih/passport-appointment-bot](https://github.com/kalkih/passport-appointment-bot) - has prebuilt executables, SUPER easy to install (check this out if you have any problems with the others)
 - This project - has graphical interface for parameter selection
 
-## Instructions
+## How to - Instructions for Windows
+
+Download the program with the button below and open it when it's downloaded (can take a while to download and start)
+
+[![Download icon](https://img.shields.io/badge/dynamic/json?color=brightgreen&label=Download&query=%24.tag_name&url=https%3A%2F%2Fapi.github.com%2Frepos%2Felias123tre%2Fpassport_booker_se%2Freleases%2Flatest&style=for-the-badge)](https://github.com/elias123tre/passport_booker_se/releases/latest/download/main.exe)
+
+If a `Windows protected your PC` popup appears, click `More info` then `Run anyway`
+
+## How to - Manual installation instructions (if use don't use Windows)
 
 > Note: beware that on Mac you may need to enable extensive permissions to install python, puppeteer or run the script. I don't have a Mac to test on so if you encounter this, Google the error message and how to solve it.
 
-1. Install python:
+### 1. Install python:
 
-   a. Open terminal
-   
-   _Windows_: type `powershell` in the search bar (lower left corner) then right click on `Windows PowerShell` and press `Run as administrator`
+#### a. Open terminal
 
-   _Mac_: open the terminal, preferably by typing `terminal` into the spotlight search bar (upper right corner) then select terminal
-   
-   b. Check if it is already installed
-   
-   _Windows & mac_: type `python --version` then enter, if it displays a python version starting with 3.7 or grater, continue to step 2
-   
-   c. If not installed (previous output shows that the command was not found)
-   
-   Install python from official source: https://www.python.org/downloads/  
-   Check the box for `Add Python 3.x to PATH` if it appears
-   
-   If you get stuck on this step, search for how to install python for your operating system
+_Windows_: type `powershell` in the search bar (lower left corner) then right click on `Windows PowerShell` and press `Run as administrator`
 
-2. Install playwright:
+_Mac_: open the terminal, preferably by typing `terminal` into the spotlight search bar (upper right corner) then select terminal
 
-   Close the terminal/console from step 1.a. and a new one the same way. Then type the following lines one by one and press enter after each one.
+#### b. Check if it is already installed
 
-   _Windows_:  
-   ```sh
-   $env:Path = [System.Environment]::GetEnvironmentVariable("Path","Machine") + ";" + [System.Environment]::GetEnvironmentVariable("Path","User")
-   python -m pip install --upgrade pip
-   python -m pip install playwright
-   playwright install chromium
-   ```
-   
-   _Mac_:  
-   ```sh
-   python3 -m pip install --upgrade pip
-   python3 -m pip install playwright
-   playwright install chromium
-   ```
+_Windows & mac_: type `python --version` then enter, if it displays a python version starting with 3.7 or grater, continue to step 2
 
-3. [Download the script](https://raw.githubusercontent.com/elias123tre/passport_booker_se/main/main.py) (press CTRL+S to save the file, select Downloads folder)
+#### c. If not installed (previous output shows that the command was not found)
 
-4. Run the script:
-   
-   Type the following lines one by one into the new terminal/console that you openend in step 2.
+Install python from official source: https://www.python.org/downloads/  
+ Check the box for `Add Python 3.x to PATH` if it appears
 
-   _Windows_:  
-   ```sh
-   cd ~/Downloads
-   python main.py
-   ```
-   
-   _Mac_:  
-   ```sh
-   cd ~/Downloads
-   python3 main.py
-   ```
+If you get stuck on this step, search for how to install python for your operating system
 
-5. Follow onscreen instructions and enter the details about your search
+### 2. Install playwright:
 
-6. Wait for a time to become available, a popup will appear (the page reloads itself in the background to search for new times).  
-   Note: if the booking isn't verified/completed manually (entering personal details) after the popup has appeared, it will be lost after some time due to inactivity
+Close the terminal/console from step 1.a. and a new one the same way. Then type the following lines one by one and press enter after each one.
 
-7. Optional: force-quit the script anytime by closing the browser or by pressing CTRL+C in the terminal/console (ignore any errors that appear)
+_Windows_:
+
+```sh
+$env:Path = [System.Environment]::GetEnvironmentVariable("Path","Machine") + ";" + [System.Environment]::GetEnvironmentVariable("Path","User")
+python -m pip install --upgrade pip
+python -m pip install playwright
+playwright install chromium
+```
+
+_Mac_:
+
+```sh
+python3 -m pip install --upgrade pip
+python3 -m pip install playwright
+playwright install chromium
+```
+
+### 3. [Download the script](https://raw.githubusercontent.com/elias123tre/passport_booker_se/main/main.py) (press CTRL+S to save the file, select Downloads folder)
+
+### 4. Run the script:
+
+Type the following lines one by one into the new terminal/console that you openend in step 2.
+
+_Windows_:
+
+```sh
+cd ~/Downloads
+python main.py
+```
+
+_Mac_:
+
+```sh
+cd ~/Downloads
+python3 main.py
+```
+
+### 5. Follow onscreen instructions and enter the details about your search
+
+### 6. Wait for a time to become available, a popup will appear (the page reloads itself in the background to search for new times).
+
+Note: if the booking isn't verified/completed manually (entering personal details) after the popup has appeared, it will be lost after some time due to inactivity
+
+### 7. Optional: force-quit the script anytime by closing the browser or by pressing CTRL+C in the terminal/console (ignore any errors that appear)
