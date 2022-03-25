@@ -8,6 +8,12 @@ from tkinter import Tk, messagebox, ttk
 
 from playwright.sync_api import sync_playwright
 
+s  # Random time between searches in milliseconds (min, max)
+RANDOM_WAIT_RANGE = (15_000, 20_000)
+
+# Whether or not to screenshot _before_ confirming booking (it will still screenshot after)
+SCREENSHOT_BEFORE_BOOKING = False
+
 LOCATIONS = [
     "blekinge",
     "dalarna",
@@ -68,7 +74,8 @@ except ValueError:
     sys.exit(1)
 
 with sync_playwright() as playwright:
-    browser = playwright.chromium.launch(headless=False, slow_mo=100)
+    # pass slow_mo=100 to enable slow mo
+    browser = playwright.chromium.launch(headless=False)
     browser.on("disconnected", lambda _: sys.exit(1))
     page = browser.new_page()
     page.goto(f"https://bokapass.nemoq.se/Booking/Booking/Index/{location.get()}")
@@ -134,6 +141,16 @@ with sync_playwright() as playwright:
             page.locator('input:has-text("Första lediga tid")').click()
 
             page.wait_for_load_state("domcontentloaded")
+            # if rate limited, wait 5 minutes
+            rate_limit = page.locator(
+                "text=Du har gjort för många 'första lediga tid' sökningar, "
+                "var vänlig och vänta en stund."
+            )
+            if rate_limit.is_visible():
+                print("Du har gjort för många sökningar, programmet väntar 5 min")
+                page.wait_for_timeout(300_000)
+                continue
+
             page.goto(f"{page.url}#SectionId", wait_until="domcontentloaded")
             times = page.locator('[data-function="timeTableCell"]')
             for time in (times.nth(i) for i in range(times.count())):
@@ -150,7 +167,8 @@ with sync_playwright() as playwright:
                         if line and line[2] != ":"
                     )
                     time.click()
-                    page.screenshot(path="tider.png", full_page=True)
+                    if SCREENSHOT_BEFORE_BOOKING:
+                        page.screenshot(path="tider.png", full_page=True)
                     page.locator('[aria-label="submit"]').click()
 
                     page.wait_for_load_state("domcontentloaded")
@@ -159,6 +177,7 @@ with sync_playwright() as playwright:
                     )
                     if time_gone.is_visible():
                         print("Hittad tid är inte längre tillgänglig")
+                        page.wait_for_timeout(10_000)
                         break
 
                     MESSAGE = "\n".join(
@@ -176,10 +195,11 @@ with sync_playwright() as playwright:
 
                     input("Tryck enter när du bokat färdigt för att spara en skärmdump")
                     page.screenshot(path="bokning.png", full_page=True)
-
-            wait = randint(15_000, 30_000)
-            print(f"Väntar {round(wait / 1000, 2)} sekunder innan nästa försök")
-            page.wait_for_timeout(wait)
+            else:
+                wait = randint(*RANDOM_WAIT_RANGE)
+                print(f"Väntar {(wait / 1000):.2f} sekunder innan nästa försök")
+                page.wait_for_timeout(wait)
+            # don't wait for timeout when exiting early
     except (KeyboardInterrupt, SystemExit):
         print("trying to quit")
         root.quit()
