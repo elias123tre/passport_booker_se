@@ -17,7 +17,7 @@ Eftersom polisen fortfarande inte har fixat fler tider för att boka pass så ko
 
 Download the program with the button below and open it when it's downloaded (can take a while to download and start)
 
-[![Download icon](https://img.shields.io/badge/dynamic/json?color=brightgreen&label=Download&query=%24.tag_name&url=https%3A%2F%2Fapi.github.com%2Frepos%2Felias123tre%2Fpassport_booker_se%2Freleases%2Flatest&style=for-the-badge)](https://github.com/elias123tre/passport_booker_se/releases/latest/download/main.exe)
+[![Download icon](https://img.shields.io/badge/dynamic/json?color=brightgreen&label=Download&query=%24.tag_name&url=https%3A%2F%2Fapi.github.com%2Frepos%2Felias123tre%2Fpassport_booker_se%2Freleases%2Flatest&style=for-the-badge)](https://github.com/elias123tre/passport_booker_se/releases/latest/download/passport_booker_se.exe)
 
 If a `Windows protected your PC` popup appears, click `More info` then `Run anyway`
 
