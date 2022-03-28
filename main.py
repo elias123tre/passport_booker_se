@@ -2,6 +2,7 @@
 
 import datetime
 import sys
+from time import sleep
 import tkinter as tk
 from random import randint
 from tkinter import Tk, messagebox, ttk
@@ -187,6 +188,10 @@ with sync_playwright() as playwright:
                             "Vill du behålla denna tid?",
                         ]
                     )
+                    root.bell()
+                    sleep(1.25)
+                    root.bell()
+                    sleep(1.25)
                     root.bell()
                     keep = messagebox.askyesno("Behåll denna tid?", MESSAGE)
                     if not keep:
