@@ -75,7 +75,7 @@ except ValueError:
 
 with sync_playwright() as playwright:
     # pass slow_mo=100 to enable slow mo
-    browser = playwright.chromium.launch(headless=False)
+    browser = playwright.firefox.launch(headless=False)
     browser.on("disconnected", lambda _: sys.exit(1))
     page = browser.new_page()
     page.goto(f"https://bokapass.nemoq.se/Booking/Booking/Index/{location.get()}")

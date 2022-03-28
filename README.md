@@ -54,7 +54,7 @@ _Windows_:
 $env:Path = [System.Environment]::GetEnvironmentVariable("Path","Machine") + ";" + [System.Environment]::GetEnvironmentVariable("Path","User")
 python -m pip install --upgrade pip
 python -m pip install playwright
-playwright install chromium
+playwright install firefox
 ```
 
 _Mac_:
@@ -62,7 +62,7 @@ _Mac_:
 ```sh
 python3 -m pip install --upgrade pip
 python3 -m pip install playwright
-playwright install chromium
+playwright install firefox
 ```
 
 ### 3. [Download the script](https://raw.githubusercontent.com/elias123tre/passport_booker_se/main/main.py) (press CTRL+S to save the file, select Downloads folder)

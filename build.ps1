@@ -6,5 +6,5 @@
 # 4. Run this file to build a packaged binary
 
 $env:PLAYWRIGHT_BROWSERS_PATH="0"
-& .\venv\Scripts\playwright.exe install chromium
+& .\venv\Scripts\playwright.exe install firefox
 & .\venv\Scripts\pyinstaller --onefile main.py
