@@ -164,7 +164,7 @@ with sync_playwright() as playwright:
                     DESCRIPTION = "\n".join(
                         line
                         for line in raw_info.splitlines()
-                        if line and line[2] != ":"
+                        if line and len(line) > 2 and line[2] != ":"
                     )
                     time.click()
                     if SCREENSHOT_BEFORE_BOOKING:
