@@ -10,7 +10,7 @@ from tkinter import Tk, messagebox, ttk
 from playwright.sync_api import sync_playwright
 
 # Random time between searches in milliseconds (min, max)
-RANDOM_WAIT_RANGE = (15_000, 20_000)
+RANDOM_WAIT_RANGE = (20_000, 30_000)
 
 # Whether or not to screenshot _before_ confirming booking (it will still screenshot after)
 SCREENSHOT_BEFORE_BOOKING = False
@@ -43,6 +43,7 @@ root = Tk()
 root.title("Passport booker - Svenska polisen")
 root.geometry("350x150")
 root.bind("<Control-c>", root.quit)
+root.bind("<Return>", lambda _: root.quit())
 
 ttk.Label(root, text="Plats (län):").grid(row=0, column=0)
 location = tk.StringVar(root)
@@ -64,6 +65,9 @@ ttk.Button(root, text="Hitta tid", command=root.quit).grid(
     row=4, column=0, columnspan=2
 )
 
+root.attributes("-topmost", True)
+root.update()
+
 root.protocol("WM_DELETE_WINDOW", sys.exit)
 root.mainloop()
 root.withdraw()
@@ -75,19 +79,31 @@ except ValueError:
     sys.exit(1)
 
 with sync_playwright() as playwright:
-    # pass slow_mo=100 to enable slow mo
-    browser = playwright.firefox.launch(headless=False)
+    browser = playwright.firefox.launch(headless=False, slow_mo=100)
+    context = browser.new_context(
+        user_agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:99.0) Gecko/20100101 Firefox/99.0"
+    )
     browser.on("disconnected", lambda _: sys.exit(1))
-    page = browser.new_page()
+    page = context.new_page()
     page.goto(f"https://bokapass.nemoq.se/Booking/Booking/Index/{location.get()}")
     page.locator('input:has-text("Boka ny tid")').click()
     # Check "Jag har tagit del av informationen ovan"
-    page.locator('input[type="checkbox"]').check()
+    page.locator(
+        'input[type="checkbox"]:near(label:text("Jag har tagit del av informationen ovan"))'
+    ).check()
 
     ppl_selector = page.locator('select[name="NumberOfPeople"]')
     ppl_selector.select_option(people.get())
 
-    page.locator("text=Nästa").click()
+    page.wait_for_load_state("networkidle")
+    page.goto(f"{page.url}#mtcaptcha-iframe-1", wait_until="domcontentloaded")
+
+    captcha_frame = page.frame_locator("#mtcaptcha-iframe-1")
+    page.main_frame.focus("#mtcaptcha-iframe-1")
+    captcha_frame.locator('[placeholder="Ange text från bilden"]').focus()
+    captcha_frame.locator("text=Bekräftad framgångsrikt").wait_for(timeout=0)
+
+    page.locator("text=Nästa steg").click()
 
     page.wait_for_load_state("domcontentloaded")
     checkboxes = page.locator("text=Ja, jag bor i Sverige")
@@ -114,6 +130,7 @@ with sync_playwright() as playwright:
     popup.title("Välj passexpedition (ort)")
     popup.geometry("350x150")
     popup.bind("<Control-c>", popup.quit)
+    popup.bind("<Return>", lambda _: popup.quit())
     popup.protocol("WM_DELETE_WINDOW", lambda: sys.exit(1))
 
     ttk.Label(popup, text="Passexpedition:").grid(row=0, column=0)
@@ -123,6 +140,9 @@ with sync_playwright() as playwright:
     ttk.Button(popup, text="Fortsätt", command=popup.quit).grid(
         row=4, column=0, columnspan=2
     )
+
+    popup.attributes("-topmost", True)
+    popup.update()
 
     popup.mainloop()
     if popup.winfo_ismapped():
