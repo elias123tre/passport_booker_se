@@ -2,7 +2,7 @@
 
 > A cross-platform script to book first available time for getting a passport in Sweden - Ett skript som automatiskt bokar pass hos polisen
 
-Eftersom polisen fortfarande inte har fixat fler tider för att boka pass så kommer detta skript att hitta den första möjliga tiden att boka pass och reservera den. Denna metod kommer högst troligt inte längre fungera efter **två veckor** då polisen ska uppdatera systemet för att förhindra bot-reservationer [(källa)](https://www.expressen.se/dinapengar/sa-ska-polisen-stoppa-fulbokningen-av-pass/).
+Eftersom polisen fortfarande inte har fixat fler tider för att boka pass så kommer detta skript att hitta den första möjliga tiden att boka pass och reservera den. Dock håller de på att att kontinuerligt uppdatera systemet för att motverka dessa typer av automatiserad program och därför kan det när som helst sluta fungera!
 
 ![User interface](https://i.imgur.com/a0jFgia.png)
 ![Location user interface](https://i.imgur.com/VM1XKI5.png)
