@@ -90,20 +90,12 @@ with sync_playwright() as playwright:
     # Check "Jag har tagit del av informationen ovan"
     page.locator(
         'input[type="checkbox"]:near(label:text("Jag har tagit del av informationen ovan"))'
-    ).check()
+    ).check(timeout=0)
 
     ppl_selector = page.locator('select[name="NumberOfPeople"]')
     ppl_selector.select_option(people.get())
 
-    page.wait_for_load_state("networkidle")
-    page.goto(f"{page.url}#mtcaptcha-iframe-1", wait_until="domcontentloaded")
-
-    captcha_frame = page.frame_locator("#mtcaptcha-iframe-1")
-    page.main_frame.focus("#mtcaptcha-iframe-1")
-    captcha_frame.locator('[placeholder="Ange text från bilden"]').focus()
-    captcha_frame.locator("text=Bekräftad framgångsrikt").wait_for(timeout=0)
-
-    page.locator("text=Nästa steg").click()
+    page.locator("text=Spara").click()
 
     page.wait_for_load_state("domcontentloaded")
     checkboxes = page.locator("text=Ja, jag bor i Sverige")
@@ -114,7 +106,7 @@ with sync_playwright() as playwright:
     for i in range(count):
         checkboxes.nth(i).click()
 
-    page.locator("text=Nästa").click()
+    page.locator("text=Spara").click()
 
     page.wait_for_load_state("domcontentloaded")
     expeditions = page.locator('select[name="SectionId"]')
