@@ -1,3 +1,15 @@
+node_modules/
+test-results/
+playwright-report/
+package-lock.json
+
+*-linux
+*-macos
+*-win.exe
+
+booking.png
+bekräftelse.png
+
 tider.png
 bokning.png
 
