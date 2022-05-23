@@ -21,7 +21,7 @@ Download the program with the button below and open it when it's downloaded (can
 
 If a `Windows protected your PC` popup appears, click `More info` then `Run anyway`
 
-## How to - Manual installation instructions (if use don't use Windows)
+## How to - Manual installation instructions (mainly for non-Windows users)
 
 > Note: beware that on Mac you may need to enable extensive permissions to install python, puppeteer or run the script. I don't have a Mac to test on so if you encounter this, Google the error message and how to solve it.
 
