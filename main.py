@@ -110,6 +110,7 @@ with sync_playwright() as playwright:
 
     page.wait_for_load_state("domcontentloaded")
     expeditions = page.locator('select[name="SectionId"]')
+    expeditions.wait_for(timeout=0)
     option_tags = expeditions.locator("option")
     options = list(
         filter(
