@@ -109,6 +109,8 @@ with sync_playwright() as playwright:
     page.locator("text=Spara").click()
 
     page.wait_for_load_state("domcontentloaded")
+    # fix to enable scrolling when viewport cut off
+    page.evaluate('document.body.style.minHeight = "200vh"')
     expeditions = page.locator('select[name="SectionId"]')
     expeditions.wait_for(timeout=0)
     option_tags = expeditions.locator("option")
@@ -130,6 +132,12 @@ with sync_playwright() as playwright:
     expedition = tk.StringVar(popup)
     ttk.OptionMenu(popup, expedition, options[0], *options).grid(row=0, column=1)
 
+    ttk.Label(popup, text="Svartlistade orter (separera med komma):").grid(
+        row=1, column=0
+    )
+    denylist = ttk.Entry(popup)
+    denylist.grid(row=1, column=1)
+
     ttk.Button(popup, text="Fortsätt", command=popup.quit).grid(
         row=4, column=0, columnspan=2
     )
@@ -142,6 +150,9 @@ with sync_playwright() as playwright:
         popup.withdraw()
 
     expeditions.select_option(label=expedition.get())
+
+    # list of denied locations in lowercase
+    deny_list = map(str.strip, denylist.get().lower().split(","))
 
     try:
         while browser.is_connected():
@@ -165,6 +176,9 @@ with sync_playwright() as playwright:
                 page.wait_for_timeout(300_000)
                 continue
 
+            # fix to enable scrolling when viewport cut off
+            page.evaluate('document.body.style.minHeight = "400vh"')
+
             page.goto(f"{page.url}#SectionId", wait_until="domcontentloaded")
             times = page.locator('[data-function="timeTableCell"]')
             for time in (times.nth(i) for i in range(times.count())):
@@ -180,6 +194,10 @@ with sync_playwright() as playwright:
                         for line in raw_info.splitlines()
                         if line and len(line) > 2 and line[2] != ":"
                     )
+                    if any(deny in DESCRIPTION.lower() for deny in deny_list):
+                        page.locator("text=Tillbaka").click()
+                        break
+
                     time.click()
                     if SCREENSHOT_BEFORE_BOOKING:
                         page.screenshot(path="tider.png", full_page=True)
